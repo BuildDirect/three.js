@@ -574,7 +574,11 @@ def extract_mesh(obj, options, recalculate=False):
     mesh_node.calc_tessface()
     scale_ = options.get(constants.SCALE, 1)
     mesh_node.transform(mathutils.Matrix.Scale(scale_, 4))
-
+    # flipyz
+    xrot = mathutils.Matrix.Rotation(math.pi/2, 4, 'X')
+    mesh_node.transform(xrot * obj.matrix_world)
+    # yrot = mathutils.Matrix.Rotation(math.pi, 4, 'X')
+    # mesh_node.transform(yrot * obj.matrix_world)
     return mesh_node
 
 
